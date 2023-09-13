@@ -1,1 +1,39 @@
+# Env vars
 **/.env
+
+# Project modules
+target
+*.class
+.idea/
+.idea_modules/
+tmp/
+out/
+*.iws
+*.ipr
+*.iml
+.bloop
+.metals
+project/metals.sbt
+/docs
+.vscode
+.bsp
+
+# User configs
+config/psforever.conf
+
+# Log files
+*.log
+logs/
+
+# Random
+*.swp
+/*.csv
+
+# Binary files
+*.so
+*.dll
+*.exe
+*.zip
+pscrypto-lib/
+.bsp/
+project/project/

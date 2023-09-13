@@ -1,0 +1,12 @@
+{
+    "folders": [
+        {
+            "path": "scala2book"
+        }
+    ],
+    "settings": {
+        "files.watcherExclude": {
+            "**/target": true
+        }
+    }
+}
