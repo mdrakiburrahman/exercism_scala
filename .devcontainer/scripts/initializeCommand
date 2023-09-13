@@ -1,0 +1,15 @@
+#!/bin/sh
+
+set -eu
+
+set -x
+
+scriptdir=$(dirname "$(readlink -f "$0")")
+# Start in the root of the repository.
+cd "$scriptdir/../../"
+
+# Make sure the .env file exists for the devcontainer to load.
+if [ ! -f .devcontainer/.env ]; then
+    echo "Creating empty .env file for devcontainer."
+    touch .devcontainer/.env
+fi

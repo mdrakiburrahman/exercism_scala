@@ -1,0 +1,134 @@
+{
+    "name": "Scala",
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "hostRequirements": {
+        "cpus": 4,
+        "memory": "8gb",
+        "storage": "32gb"
+    },
+    // Prep some host side things for the container build
+    // This creates the (empty) .env file for instance.
+    //
+    "initializeCommand": [
+        ".devcontainer/scripts/initializeCommand"
+    ],
+    "runArgs": [
+        "--cap-add=SYS_PTRACE",
+        "--security-opt",
+        "seccomp=unconfined",
+        "--env-file=.devcontainer/.env"
+    ],
+    // Features to add into the container following the new proposed specification
+    //
+    // - https://github.com/devcontainers/features
+    // - https://containers.dev/features
+    //
+    "features": {
+        "ghcr.io/devcontainers/features/common-utils:2.1.2": {
+            "username": "automatic",
+            "uid": "automatic",
+            "gid": "automatic",
+            "installZsh": true,
+            "installOhMyZsh": true,
+            "upgradePackages": true,
+            "nonFreePackages": false
+        },
+        "ghcr.io/devcontainers/features/docker-from-docker:1": {
+            "version": "5:20.10*",
+            "moby": false
+        },
+        "ghcr.io/devcontainers-contrib/features/sbt-sdkman:2": {
+            "jdkVersion": "8",
+            "jdkDistro": "ms"
+        },
+        "ghcr.io/devcontainers-contrib/features/scala-sdkman:2": {
+            "version": "2.12.15",
+            "jdkVersion": "8",
+            "jdkDistro": "ms"
+        },
+        // - https://scala-cli.virtuslab.org/docs/reference/scala-versions
+        //
+        "ghcr.io/devcontainers-contrib/features/scalacli-sdkman:2": {
+            "version": "0.1.3",
+            "jdkVersion": "8",
+            "jdkDistro": "ms"
+        }
+    },
+    // Various mounting, run, post-create, and user settings
+    //
+    "containerEnv": {
+        // Useful for doing bind mounts for containers launched from inside the devcontainer.
+        //
+        "LOCAL_WORKSPACE_FOLDER": "${localWorkspaceFolder}",
+        "CONTAINER_WORKSPACE_FOLDER": "${containerWorkspaceFolder}"
+    },
+    "postCreateCommand": "/tmp/scripts/post-create-commands.sh",
+    "postAttachCommand": "/tmp/scripts/post-attach-commands.sh",
+    "remoteUser": "vscode",
+    "containerUser": "vscode",
+    // Set *default* container specific settings.json values on container create.
+    //
+    // - https://containers.dev/supporting
+    //
+    "customizations": {
+        "vscode": {
+            "settings": {
+                // Editor
+                "editor.formatOnType": true,
+                "editor.formatOnSave": true,
+                // Terminal
+                "terminal.integrated.profiles.linux": {
+                    "bash": {
+                        "path": "bash"
+                    },
+                    "zsh": {
+                        "path": "zsh"
+                    },
+                    "fish": {
+                        "path": "fish"
+                    },
+                    "tmux": {
+                        "path": "tmux",
+                        "icon": "terminal-tmux"
+                    },
+                    "pwsh": {
+                        "path": "pwsh",
+                        "icon": "terminal-powershell"
+                    }
+                },
+                "terminal.integrated.defaultProfile.linux": "bash",
+                // Exclude these folders with large number of files from file watching
+                "files.watcherExclude": {
+                    "**/buildtool-venv/**": true
+                }
+            },
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "DavidAnson.vscode-markdownlint", // Linter for markdown files
+                "donjayamanne.githistory", // Enhanced git history experience
+                "eamodio.gitlens", // Enhanced git experience
+                "esbenp.prettier-vscode", // A pretty good formatter for many languages
+                "github.copilot", // Copilot integration
+                "github.copilot-chat", // Copilot chat integration
+                "Gruntfuggly.todo-tree", // Highlights TODO comments in code
+                "hbenl.vscode-test-explorer", // Test explorer
+                "huntertran.auto-markdown-toc", // Auto-generated Markdown Table of Contents
+                "IBM.output-colorizer", // Colorize your output/test logs
+                "marp-team.marp-vscode", // PowerPoints - but with code
+                "ms-azure-devops.azure-pipelines", // Azure Pipelines integration
+                "ms-azuretools.vscode-docker", // Docker integration
+                "ms-vsliveshare.vsliveshare-pack", // Allows easy code share
+                "scalameta.metals", // Scala language server
+                "shd101wyy.markdown-preview-enhanced", // Enhanced markdown previewer
+                "spikespaz.vscode-smoothtype", // Smooth cursor animation
+                "stkb.rewrap", // "Alt + Q" -> rewrap comments after n characters on one line
+                "streetsidesoftware.code-spell-checker", // Spell checks your code
+                "tyriar.sort-lines", // "Ctrl + Shift + P -> Sort lines" -> sort lines alphabetically
+                "waderyan.gitblame", // Enhances git blame experience
+                "scala-lang.scala" // Scala language support
+            ]
+        }
+    }
+}
