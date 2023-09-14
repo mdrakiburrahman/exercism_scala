@@ -14,7 +14,6 @@ out/
 .bloop
 .metals
 project/metals.sbt
-.vscode
 .bsp
 
 # User configs

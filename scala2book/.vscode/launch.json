@@ -1,0 +1,19 @@
+// Ensure you launch with the debug "Green" button to launch the class directly!
+// I.e. this debug configuration does not work if you click "debug" from the file.
+//
+// - https://scalameta.org/metals/docs/editors/vscode/#via-a-launchjson-configuration
+//
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug",
+            "type": "scala",
+            "request": "launch",
+            "mainClass": "org.stairwaybook.layout.Spiral",
+            "args": [
+                "35"
+            ]
+        }
+    ]
+}

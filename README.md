@@ -46,3 +46,9 @@ And debugging should work:
 ![Devcontainer Workspace](docs/images/metals-debug-button.png)
 
 ![Devcontainer Workspace](docs/images/metals-debug-hit.png)
+
+The `launch.json` contains a debugging configuration with an entrypoint:
+
+![Devcontainer Debug Launcher](docs/images/devcontainer-launch.png)
+
+![Devcontainer Debug Launcher](docs/images/devcontainer-launch-args.png)
