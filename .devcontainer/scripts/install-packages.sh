@@ -6,20 +6,15 @@ export DEBIAN_FRONTEND=noninteractive
 apt-get update
 apt-get install -y \
     apt-transport-https \
+    apt-utils \
+    build-essential \
     ca-certificates \
     curl \
     gnupg \
     lsb-release \
-    wget \
-    software-properties-common
-
-# Run install apt-utils to avoid debconf warning then verify presence of other common developer tools and dependencies
-PACKAGE_LIST="apt-utils \
-    build-essential \
-    vim"
-
-echo "Packages to verify are installed: ${PACKAGE_LIST}"
-apt-get -y install --no-install-recommends ${PACKAGE_LIST} 2> >( grep -v 'debconf: delaying package configuration, since apt-utils is not installed' >&2 )
+    software-properties-common \
+    vim \
+    wget
 
 echo "Installing yq..."
 VERSION=v4.25.1
