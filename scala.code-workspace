@@ -1,12 +1,13 @@
 {
     "folders": [
         {
-            "path": "scala2book"
+            "path": "synapsesparkmaven"
         }
     ],
     "settings": {
         "files.watcherExclude": {
             "**/target": true
-        }
+        },
+        "java.compile.nullAnalysis.mode": "disabled"
     }
 }

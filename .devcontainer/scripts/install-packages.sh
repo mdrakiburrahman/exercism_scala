@@ -14,7 +14,8 @@ apt-get install -y \
     lsb-release \
     software-properties-common \
     vim \
-    wget
+    wget \
+    openjdk-8-jdk
 
 echo "Installing yq..."
 VERSION=v4.25.1
@@ -22,7 +23,16 @@ BINARY=yq_linux_386
 sudo wget https://github.com/mikefarah/yq/releases/download/${VERSION}/${BINARY} -O /usr/bin/yq \
     && sudo chmod +x /usr/bin/yq
 
+echo "Installing Apache Spark (for Shell CLI executions)..."
+sudo wget https://archive.apache.org/dist/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz && \
+    tar -xvf spark-3.3.1-bin-hadoop3.tgz && \
+    sudo mkdir /opt/spark && \
+    sudo mv spark-3.3.1-bin-hadoop3/* /opt/spark && \
+    sudo rm -rf spark-3.3.1-bin-hadoop3.tgz && \
+    sudo rm -rf spark-3.3.1-bin-hadoop3
+
 # Clean up
+#
 sudo apt-get autoremove -y \
 && sudo apt-get clean -y \
 && sudo rm -rf /var/lib/apt/lists/* \
