@@ -43,6 +43,10 @@
             "jdkVersion": "8",
             "jdkDistro": "ms"
         },
+        "ghcr.io/devcontainers-contrib/features/maven-sdkman:2": {
+            "jdkVersion": "17",
+            "jdkDistro": "ms"
+        },
         "ghcr.io/devcontainers-contrib/features/scala-sdkman:2": {
             "version": "2.12.15",
             "jdkVersion": "8",
