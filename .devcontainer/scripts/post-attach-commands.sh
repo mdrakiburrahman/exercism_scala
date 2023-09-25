@@ -2,19 +2,18 @@
 
 echo "Starting Apache Spark..."
 
-# Check if Spark Master is running
-#
-if ! ps -ef | grep -q "org.apache.spark.deploy.master.Master"; then
+if pgrep -f "org.apache.spark.deploy.master.Master" > /dev/null; then
+    echo "Spark Master already running"
+else
     echo "Spark is not running. Starting..."
     sudo /opt/spark/sbin/start-master.sh
-    if ! ps -ef | grep -q "org.apache.spark.deploy.worker.Worker"; then
-        echo "Spark Worker is not running. Starting..."
-        sudo /opt/spark/sbin/start-worker.sh spark://$(hostname):7077
-    else
-        echo "Spark Worker already running"
-    fi
+fi
+
+if pgrep -f "org.apache.spark.deploy.worker.Worker" > /dev/null; then
+    echo "Spark Worker already running"
 else
-    echo "Spark Master already running"
+    echo "Spark Worker is not running. Starting..."
+    sudo /opt/spark/sbin/start-worker.sh spark://$(hostname):7077
 fi
 
 echo
