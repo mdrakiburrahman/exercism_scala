@@ -5,8 +5,28 @@ import org.apache.spark.sql.SparkSession
 
 object SparkPi {
   def main(args: Array[String]): Unit = {
-    println("Starting SparkPi")
-    val spark = SparkSession.builder.appName("Spark Pi").getOrCreate()
+
+    println("Initiating Spark Session...")
+
+    val builder = SparkSession.builder
+      .appName("SparkPi")
+
+    // Add in local spark config, if debug mode is enabled
+    //
+    val builderWithLocalConfig =
+      if (sys.env.getOrElse("sparkmode", "") == "local") {
+        println("SparkPi running in local mode")
+        builder.config("spark.master", "local")
+      } else {
+        println("SparkPi running in cluster mode")
+        builder
+      }
+
+    val spark = builderWithLocalConfig
+      .getOrCreate()
+
+    // Calculate Pi
+    //
     val slices = if (args.length > 0) args(0).toInt else 2
     val n = math.min(100000L * slices, Int.MaxValue).toInt
     val count = spark.sparkContext
