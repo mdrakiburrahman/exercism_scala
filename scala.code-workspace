@@ -1,12 +1,13 @@
 {
     "folders": [
         {
-            "path": "synapsesparkscala"
+            "path": "synapsesparkmaven"
         }
     ],
     "settings": {
         "files.watcherExclude": {
             "**/target": true
-        }
+        },
+        "java.compile.nullAnalysis.mode": "disabled"
     }
 }

@@ -1,0 +1,19 @@
+{
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    // Metals: https://scalameta.org/metals/docs/editors/vscode/#via-a-launchjson-configuration
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "scala",
+            "request": "launch",
+            "name": "Launch Main",
+            "mainClass": "com.apache.spark.devcontainer.SparkPi",
+            "args": [],
+            "jvmOptions": [],
+            "env": {
+                // Flag to set for local debugging logic
+                "sparkmode": "local"
+            }
+        },
+    ]
+}

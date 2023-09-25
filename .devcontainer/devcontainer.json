@@ -131,7 +131,8 @@
                 "streetsidesoftware.code-spell-checker", // Spell checks your code
                 "tyriar.sort-lines", // "Ctrl + Shift + P -> Sort lines" -> sort lines alphabetically
                 "waderyan.gitblame", // Enhances git blame experience
-                "scala-lang.scala" // Scala language support
+                "scala-lang.scala", // Scala language support
+                "vscjava.vscode-java-pack" // Java Extension Pack
             ]
         }
     }
